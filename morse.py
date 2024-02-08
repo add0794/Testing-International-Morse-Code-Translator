@@ -1,166 +1,79 @@
-# from bs4 import BeautifulSoup
-# import requests
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-
-chrome_driver_path = "/Applications/chromedriver"
-s = Service(chrome_driver_path)
-driver = webdriver.Chrome(service = s)
-
-driver.get("https://morsedecoder.com/")
-
-content_1 = driver.find_elements_by_class_name("has-text-weight-semibold")
-signs = [time.text for time in content_1]
-signs.remove('Morse Decoder')
-# print(signs)
-# print(elements)
-
-content_2 = driver.find_elements_by_css_selector("td")
-i = 1
-morse = []
-while i in range(0, len(content_2)):
-    morse.append(content_2[i].text)
-    i += 2
-# print(morse)
-
-morse_code = {signs[i]:morse[i] for i in range(len(signs))} # Dictionary comprehension
-morse_code[" "] = "/"
-# print(morse_code)
+from selenium.webdriver.common.by import By
+import time
 
 
+try:
+    driver = webdriver.Chrome()  # You can use any other browser driver
+    driver.get("https://morsedecoder.com/")
 
-# = [time.text for time in content]
 
-# print(elements)
-# new_elements = [i.split() for i in elements]
-# values = dict()
-# k = 0
-# v = 1
-# for i, (k, v) in enumerate(elements):
-#     print(i, k, v)
-#     k = i + 2
-#     v = v + 2
-# for i, j in enumerate(new_elements):
-#     keys = i + 2
-#     value = j + 2
-#     values[keys] = value
-# signs = dict()
-# for i in range(0, len(elements)):
-#     elements.split()
-#
-#     print(element)
+    # Find and access the Morse Alphabet
+    driver.find_element(By.XPATH, "//*[@id='show-alphabet']/span[2]").click()
 
-#characters > table:nth-child(3) > tbody > tr:nth-child(3) > td:nth-child(2)
-# //*[@id="characters"]/table[1]/tbody/tr[3]/td[2]
-# <td>....</td>
+    time.sleep(2) # Take 2 seconds before accessing the tables
 
-# response = requests.get(url = "https://morsedecoder.com/")
-# url = response.text
-# soup = BeautifulSoup(url, "html.parser")
+    # Get the three tables (i.e. letters, numbers, and punctuation) as a nested list
 
-#
-# import docx
-# # from exceptions import PendingDeprecationWarning
-# import os
-#
-# os.chdir("/Users/adubro4/PycharmProjects/100 Days of Code/Portfolio Project 1 (Day 81)")
-# # doc = docx.Document("morse.docx")
-# # for i in range(0, len(doc.paragraphs[60].runs)):
-# #     print(doc.paragraphs[60].runs[i].text)
-#
-# def gettext(filename):
-#     doc = docx.Document(filename)
-#     text = []
-#     for paragraph in doc.paragraphs:
-#         text.append(paragraph.text)
-#     return "\n".join(text)
-#
-# print(gettext("morse.docx"))
-#
-# 1.        6     ....
-# 2..       7      ...
-# 3...       8      ..
-# 4....     9       .
-# 5.....
-# 0        
-#
-#
-#
-# morse_code_rules = {
-#     'a': '·−',
-#     'b': '−···',
-#     'c': '−·−·',
-#     'd': '−··',
-#     'e': '·',
-#     'f': '··−·',
-#     'g': '−−·',
-#     'h': '····',
-#     'i': '··',
-#     'j': '·−−−',
-#     'k': '−·−',
-#     'l': '·−··',
-#     'm': '−−',
-#     'n': '−·',
-#     'o': '−−−',
-#     'p': '·−−·',
-#     'q': '−−·−',
-#     'r': '·−·',
-#     's': '···',
-#     't': '−',
-#     'u': '··−',
-#     'v': '···−',
-#     'w': '·−−',
-#     'x': '−··−',
-#     'y': '−·−−',
-#     'z': '−−··',
-#     '0': '−−−−−',
-#     '1': '·−−−−',
-#     '2': '··−−−',
-#     '3': '···−−',
-#     '4': '····−',
-#     '5': '·····',
-#     '6': '−····',
-#     '7': '−−···',
-#     '8': '−−−··',
-#     '9': '−−−−·',
-#     ' ': '/'
-# }
-#
-# 1 --       6	. . . .
-# 2	. .   	7	  . . .
-# 3	. . .   	8	    . .
-# 4	. . . . 	9	    .
-# 5	. . . . .	0	    
-#
-# # for paragraph in doc.paragraphs:
-# #     text = paragraph.text
-# #     new_text = text.split()
-# #     print(new_text)
-# # print(doc.paragraphs[60].text)
-# # paras = doc.paragraphs
-# # print(len(paras))
-#
-# # absFilePath = os.path.abspath(__file__)
-# # print(absFilePath)
-# # fileDir = os.path.dirname(os.path.abspath(__file__))
-# # print(fileDir)
-# # parentDir = os.path.dirname(fileDir)
-# # print(parentDir)
-#
-# # os.chdir(os.path.dirname(os.path.abspath(__file__)))
-# # print(os.getcwd())
-#
-# # print(os.getcwd())
-# # os.chdir("/Users/adubro4/PycharmProjects/100 Days of Code/Portfolio Project 1 (Day 81)")
-# # fileDir = os.path.dirname(os.path.abspath(__file__))
-# # os.chdir(fileDir)
-# # os.chdir("/Users/adubro4/PycharmProjects/100 Days of Code/Portfolio Project 1 (Day 81)")
-# # path = "/Users/adubro4/PycharmProjects/100 Days of Code/Portfolio Project 1 (Day 81)/morse.docx"
-# #
-# #
-# # paras = doc.paragraphs
-# # print(len(paras))
-# # #
-# # # morse = {
-# #
-# }
+    # Morse letters
+
+    letter_table = driver.find_element(By.CSS_SELECTOR, "#characters > div:nth-child(3) > table")
+    letter_rows = letter_table.find_elements(By.TAG_NAME, "tr")
+
+    letters_dict = {}
+
+    for row in letter_rows:
+        # Find all cells within the current row
+        cells = row.find_elements(By.TAG_NAME, "td")
+        # Ensure there are at least two cells in the row
+        for i in range(0, len(cells) - 1, 2):
+            # Extract the text from the first and second cells
+            key = cells[i].text.strip()
+            value = cells[i + 1].text.strip()
+            letters_dict[key] = value
+
+
+    # Morse numbers
+
+    number_table = driver.find_element(By.CSS_SELECTOR, "#characters > div:nth-child(5) > table")
+    number_rows = number_table.find_elements(By.TAG_NAME, "tr")
+
+    numbers_dict = {}
+
+    for row in number_rows:
+        # Find all cells within the current row
+        cells = row.find_elements(By.TAG_NAME, "td")
+        # Ensure there are at least two cells in the row
+        for i in range(0, len(cells) - 1, 2):
+            # Extract the text from the first and second cells
+            key = cells[i].text.strip()
+            value = cells[i + 1].text.strip()
+            numbers_dict[key] = value
+
+
+    # Morse puncutation 
+
+    punctuation_table = driver.find_element(By.CSS_SELECTOR, "#characters > div:nth-child(7) > table")
+    punctuation_rows = punctuation_table.find_elements(By.TAG_NAME, "tr")
+
+    punctuation_dict = {}
+
+    for row in punctuation_rows:
+        # Find all cells within the current row
+        cells = row.find_elements(By.TAG_NAME, "td")
+        # Ensure there are at least two cells in the row
+        for i in range(0, len(cells) - 1, 2):
+            # Extract the text from the first and second cells
+            key = cells[i].text.strip()
+            value = cells[i + 1].text.strip()
+            punctuation_dict[key] = value
+
+
+    # Nest the dictionaries in a list
+    nested_dict = [letters_dict, numbers_dict, punctuation_dict]
+    print(nested_dict)
+
+
+finally:
+    # Quit the WebDriver session to close the browser
+    driver.quit()
