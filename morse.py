@@ -70,8 +70,7 @@ try:
 
 
     # Nest the dictionaries in a list
-    nested_dict = [letters_dict, numbers_dict, punctuation_dict]
-    print(nested_dict)
+    nested_list = [letters_dict, numbers_dict, punctuation_dict]
 
 
 finally:
