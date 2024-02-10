@@ -71,7 +71,7 @@ try:
 
     # Nest the dictionaries in a list
     nested_list = [letters_dict, numbers_dict, punctuation_dict]
-
+    print(nested_list)
 
 finally:
     # Quit the WebDriver session to close the browser
