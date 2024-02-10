@@ -99,4 +99,4 @@ print("Result by using Selenium:", morse_message) # Print the Selenium-derived M
 print("Result by using website:", entered_text) # Print the website-derived Morse code message
 end_time = time.time() # End execution time
 execution_time = (end_time - start_time) # Calculate the time it took to run this process
-print(f"Process finished, and it took {execution_time} seconds.") # Print execution time
+# print(f"Process finished, and it took {execution_time} seconds.") # Print execution time
