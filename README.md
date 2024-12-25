@@ -10,4 +10,4 @@ The [second](https://github.com/add0794/Testing-International-Morse-Code-Transla
 
 An object-oriented version is available from the second version, though given the straightforward nature of this assignment, a procedural approach does the job just fine, if not better.
 
-Learn more about Morse code [here](https://www.babbel.com/en/magazine/how-does-morse-code-work), as well as how it's applied in other languages.
+Learn more about Morse code [here](https://www.babbel.com/en/magazine/how-does-morse-code-work), as well as how it's applied in other languages. A detailed description can be found [here](https://github.com/add0794/Testing-International-Morse-Code-Translator/blob/main/International%20Morse%20Code.docx), too.
